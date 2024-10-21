@@ -64,7 +64,7 @@ class Team(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, related_name='teams')
 
     # Bir takım birden fazla sezonda oynayabilir
-    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name='teams')
+    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name='teams2')
 
     def __str__(self):
         return f"{self.team_name} ({self.tournament.tournament_name} - {self.season.season_name})"
