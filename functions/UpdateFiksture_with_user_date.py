@@ -4,7 +4,7 @@ import django
 
 # Proje kök dizinine gitmek için sys.path'e ekleme yap
 # Projenin kök dizinini buraya ekle (manage.py'nin bulunduğu dizin)
-sys.path.append("C:/Users/ahmet.yildirir/Desktop/DjangoTestler/FxS")
+sys.path.append("/home/ahmety/Masaüstü/FxS")
 
 # Django ayarlarını doğru şekilde işaretle (settings.py dosyası Home içinde)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Home.settings')
