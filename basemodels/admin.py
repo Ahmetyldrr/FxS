@@ -30,3 +30,23 @@ class SeasonAdmin(admin.ModelAdmin):
     list_display = ['season_id','season_name', 'season_year', 'tournament']  # Turnuvayı da gösteriyoruz
     search_fields = ['season_name', 'season_year']
     list_filter = ['tournament']  # Sezonları turnuvaya göre filtreleyebiliriz
+    
+    
+    
+
+from .models import Team
+
+# Team modelini admin paneline ekliyoruz
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    # Görüntülemek istediğiniz alanlar
+    list_display = ('team_name', 'team_shortName', 'team_nameCode', 'team_national', 'tournament', 'season')
+    
+    # Arama yapılacak alanlar
+    search_fields = ('team_name', 'team_shortName', 'team_nameCode')
+
+    # Filtreleme alanları (sağ tarafta)
+    list_filter = ('tournament', 'season', 'team_national')
+    
+    # Varsayılan sıralama
+    ordering = ('season',)

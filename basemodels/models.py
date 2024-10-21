@@ -48,3 +48,27 @@ class Season(models.Model):
 
     def __str__(self):
         return f"{self.season_name} ({self.season_year})"
+    
+    
+
+
+class Team(models.Model):
+    team_id = models.IntegerField()  # Artık benzersiz değil, bir takım farklı turnuvalarda yer alabilir
+    team_name = models.CharField(max_length=255)
+    team_slug = models.SlugField(max_length=255)
+    team_shortName = models.CharField(max_length=100)
+    team_nameCode = models.CharField(max_length=10)
+    team_national = models.BooleanField(default=False)
+
+    # Bir takım birden fazla turnuvada oynayabilir
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, related_name='teams')
+
+    # Bir takım birden fazla sezonda oynayabilir
+    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name='teams')
+
+    def __str__(self):
+        return f"{self.team_name} ({self.tournament.tournament_name} - {self.season.season_name})"
+
+    class Meta:
+        # Aynı takım, aynı turnuvada, aynı sezonda yalnızca bir kez yer alabilir
+        unique_together = ('team_id', 'tournament', 'season')
