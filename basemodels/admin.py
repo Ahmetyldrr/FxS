@@ -55,11 +55,10 @@ from .models import Match
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('id', 'homeTeam', 'awayTeam', 'season', 'tournament', 'status_type', 'startTimestamp')
+    list_display = ('id', 'home_team_name', 'away_team_name', 'season', 'tournament', 'status_type', 'startTimestamp')
     list_filter = ('season', 'tournament', 'status_type')
     search_fields = ('homeTeam__team_name', 'awayTeam__team_name', 'slug')
-
-    # Admin panelinde gözüken ev sahibi ve deplasman takım isimlerini düzenleme
+    
     def home_team_name(self, obj):
         return obj.homeTeam.team_name
     home_team_name.short_description = 'Home Team'
