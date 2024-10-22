@@ -15,7 +15,7 @@ class ModelDataAdmin(admin.ModelAdmin):
 @admin.register(Tournament)
 class TournamentAdmin(admin.ModelAdmin):
     # Listede gösterilecek sütunlar (ülke bilgisini de ekliyoruz)
-    list_display = ['tournament_uniqueTournament_id', 'tournament_name', 'tournament_slug', 'tournament_category_name']
+    list_display = ['tournament_id', 'tournament_name', 'tournament_slug', 'tournament_category_name']
     
     # Arama yapılacak alanlar
     search_fields = ['tournament_name', 'tournament_slug']
