@@ -11,7 +11,6 @@ class ModelDataAdmin(admin.ModelAdmin):
     search_fields = ('data_id', 'data')  # data_id ve data alanlarında arama yapılabilir
 
 
-
 @admin.register(Tournament)
 class TournamentAdmin(admin.ModelAdmin):
     # Listede gösterilecek sütunlar (ülke bilgisini de ekliyoruz)
@@ -50,3 +49,21 @@ class TeamAdmin(admin.ModelAdmin):
     
     # Varsayılan sıralama
     ordering = ('season',)
+
+
+from .models import Match
+
+@admin.register(Match)
+class MatchAdmin(admin.ModelAdmin):
+    list_display = ('id', 'homeTeam', 'awayTeam', 'season', 'tournament', 'status_type', 'startTimestamp')
+    list_filter = ('season', 'tournament', 'status_type')
+    search_fields = ('homeTeam__team_name', 'awayTeam__team_name', 'slug')
+
+    # Admin panelinde gözüken ev sahibi ve deplasman takım isimlerini düzenleme
+    def home_team_name(self, obj):
+        return obj.homeTeam.team_name
+    home_team_name.short_description = 'Home Team'
+
+    def away_team_name(self, obj):
+        return obj.awayTeam.team_name
+    away_team_name.short_description = 'Away Team'
