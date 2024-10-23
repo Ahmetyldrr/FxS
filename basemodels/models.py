@@ -73,8 +73,6 @@ class Team(models.Model):
         unique_together = ('team_id', 'tournament', 'season')  # Aynı takım, aynı turnuvada, aynı sezonda yalnızca bir kez yer alabilir
 
 
-
-
 from basemodels.models import Team, Tournament, Season
 
 class Match(models.Model):
