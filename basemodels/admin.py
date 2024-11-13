@@ -66,3 +66,11 @@ class MatchAdmin(admin.ModelAdmin):
     def away_team_name(self, obj):
         return obj.awayTeam.team_name
     away_team_name.short_description = 'Away Team'
+    
+from .models import ErrorLog
+
+@admin.register(ErrorLog)
+class ErrorLogAdmin(admin.ModelAdmin):
+    list_display = ('timestamp', 'error_type', 'resolved')  # Admin panelde gösterilecek alanlar
+    list_filter = ('resolved', 'error_type')  # Filtreleme alanları
+    search_fields = ('error_type', 'details')  # Arama yapılacak alanlar

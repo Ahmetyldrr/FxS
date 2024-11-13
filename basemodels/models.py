@@ -101,3 +101,19 @@ class Match(models.Model):
         verbose_name = 'Match'
         verbose_name_plural = 'Matches'
         unique_together = ('homeTeam', 'awayTeam', 'season', 'tournament')
+
+
+
+
+class ErrorLog(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)  # Hatanın oluştuğu zaman
+    error_type = models.CharField(max_length=255)  # Hata türü
+    details = models.TextField()  # Hatanın detayları
+    resolved = models.BooleanField(default=False)  # Hata çözülmüş mü
+
+    def __str__(self):
+        return f"{self.timestamp} - {self.error_type}"
+
+    class Meta:
+        verbose_name = 'Error Log'
+        verbose_name_plural = 'Error Logs'
